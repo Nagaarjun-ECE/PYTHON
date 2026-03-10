@@ -1,0 +1,7 @@
+if __name__ == '__main__':
+    my_list = []
+    N = int(input())
+    for _ in range(N): 
+        command_parts = input().split()
+        command_name = command_parts[0]
+        if command_name == "insert":
