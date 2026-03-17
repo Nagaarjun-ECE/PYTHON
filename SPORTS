@@ -1,0 +1,10 @@
+t=input("warm,cold ")
+h=input("dry,humid ")
+if(t=="warm"and h=="dry"):
+    print("play basketball")
+elif(t=="warm"and h=="humid"):
+    print("play tennis")
+elif(t=="cold"and"dry"):
+    print("play cricket")
+elif(t=="cold"and"humid"):
+    print("swim")
