@@ -14,7 +14,6 @@ def calculate_business_outcome():
             total_revenue = n * 50
             total_expense_percentage = p1 + p2 + p3
             outcome = total_revenue * (100 - total_expense_percentage) // 100
-            
             if outcome >= 0:
                 print(f"Profit: {outcome}")
             else:
