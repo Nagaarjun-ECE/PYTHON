@@ -6,7 +6,6 @@ def calculate_business_outcome():
         t = int(line1.strip())
     except ValueError:
         return
-
     for _ in range(t):
         try:
             n = int(sys.stdin.readline().strip())    
