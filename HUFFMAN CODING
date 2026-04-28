@@ -1,0 +1,36 @@
+import math
+import heapq
+
+def huffman_coding(probs):
+    if sum(probs) > 1.0001: return print("Error: Sum > 1")
+
+    heap = [[p, [[f"m{i}", ""]]] for i, p in enumerate(probs)]
+    heapq.heapify(heap)
+
+    while len(heap) > 1:
+        lo1 = heapq.heappop(heap)
+        lo2 = heapq.heappop(heap)
+        for pair in lo1[1]: pair[1] = '0' + pair[1]
+        for pair in lo2[1]: pair[1] = '1' + pair[1]
+        heapq.heappush(heap, [lo1[0] + lo2[0], lo1[1] + lo2[1]])
+
+    codes = dict(heapq.heappop(heap)[1])
+    entropy = sum(p * math.log2(1/p) for p in probs if p > 0)
+    avg_len = sum(probs[i] * len(codes[f"m{i}"]) for i in range(len(probs)))
+   
+    # Efficiency and Redundancy
+    efficiency = (entropy / avg_len) * 100
+    redundancy = 100 - efficiency
+
+    print(f"\n{'Msg':<5} | {'Prob':<5} | {'Code'}")
+    for i, p in enumerate(probs):
+        print(f"m{i:<4} | {p:<5} | {codes[f'm{i}']}")
+
+    print(f"\nEntropy: {entropy:.4f}")
+    print(f"Avg Length: {avg_len:.4f}")
+    print(f"Efficiency: {efficiency:.2f}%")
+    print(f"Redundancy: {redundancy:.2f}%")
+
+n = int(input("Number of messages: "))
+probs = [float(input(f"Prob m{i}: ")) for i in range(n)]
+huffman_coding(probs)
